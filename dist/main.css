@@ -1,0 +1,12 @@
+* {
+    margin: 5px;
+    padding: 0;
+}
+
+.nav{
+    margin: 5px 10px;
+}
+
+.nav-item:hover {
+    color: #C42222;
+}

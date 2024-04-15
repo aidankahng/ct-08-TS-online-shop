@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Basic Online Store</title>
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div id="navigation-div" style="display: flex; flex-direction: row; justify-content: center ;width: 100%;">
+            <p class="nav nav-title"> Welcome to the Shop: </p>
+            <p class="nav nav-item nav-login" id="nav-login"> Login </p>
+            <p class="nav nav-item nav-shop" id="nav-shop"> View Shop </p>
+            <p class="nav nav-item nav-cart" id="nav-cart"> View Cart </p>
+        </div>
+        <div id="login-div">
+            <p>Sign In to view the shop:</p>
+            <input
+                type="text"
+                name="name-input"
+                id="name-input"
+                placeholder="Name"
+            />
+            <input
+                type="password"
+                name="age-input"
+                id="age-input"
+                placeholder="Password"
+            />
+            <button type="submit" id="login-button">Log In</button>
+        </div>
+        <div id="shop-div" style="display: none;"> Sign in first to view the shop </div>
+        <div id="cart-div" style="display: none;"> Sign in first to view your cart </div>
+        <script src="bundle.js"></script>
+    </body>
+</html>
