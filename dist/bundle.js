@@ -1087,19 +1087,52 @@ class User {
     }
 }
 class Item {
-    constructor(name, price, description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.id = (0, uuid_1.v4)();
+    get description() {
+        return this._description;
+    }
+    set description(value) {
+        this._description = value;
+    }
+    get price() {
+        return this._price;
+    }
+    set price(value) {
+        this._price = value;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        this._name = value;
+    }
+    get id() {
+        return this._id;
+    }
+    constructor(_name, _price, _description) {
+        this._name = _name;
+        this._price = _price;
+        this._description = _description;
+        this._id = (0, uuid_1.v4)();
     }
 }
 // Class shop will hold our items
 // Along with a reference to the current user
 // So that clicking Add to cart actually adds to the current user's cart
 class Shop {
+    static get myUser() {
+        return Shop._myUser;
+    }
+    static set myUser(value) {
+        Shop._myUser = value;
+    }
+    get items() {
+        return this._items;
+    }
+    set items(value) {
+        this._items = value;
+    }
     constructor(user) {
-        this.items = new Set();
+        this._items = new Set();
         Shop.myUser = user;
     }
     addToShop(item) {
@@ -1186,7 +1219,7 @@ loginButton.addEventListener('click', () => {
         document.getElementById('name-input').value = '';
         document.getElementById('age-input').value = '';
         document.getElementById('name-input').placeholder = 'ERROR: Input valid Name';
-        document.getElementById('age-input').placeholder = 'ERROR: Input valid Age';
+        document.getElementById('age-input').placeholder = 'ERROR: Input valid Password';
     }
     else {
         for (let div of mainDivs) {
@@ -1201,6 +1234,8 @@ loginButton.addEventListener('click', () => {
         (_a = Shop.myUser) === null || _a === void 0 ? void 0 : _a.createCart();
         document.getElementById('name-input').value = '';
         document.getElementById('age-input').value = '';
+        document.getElementById('name-input').placeholder = 'Name';
+        document.getElementById('age-input').placeholder = 'Password';
     }
 });
 

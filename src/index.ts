@@ -135,13 +135,34 @@ class User {
 }
 
 class Item {
-    readonly id:string;
+    public get description(): string {
+        return this._description;
+    }
+    public set description(value: string) {
+        this._description = value;
+    }
+    public get price(): number {
+        return this._price;
+    }
+    public set price(value: number) {
+        this._price = value;
+    }
+    public get name(): string {
+        return this._name;
+    }
+    public set name(value: string) {
+        this._name = value;
+    }
+    public get id(): string {
+        return this._id;
+    }
+    private readonly _id: string;
     constructor (
-        public name: string,
-        public price: number,
-        public description: string
+        private _name: string,
+        private _price: number,
+        private _description: string
     ){
-        this.id = uuidv4()
+        this._id = uuidv4()
     }
 }
 
@@ -150,8 +171,20 @@ class Item {
 // So that clicking Add to cart actually adds to the current user's cart
 
 class Shop {
-    static myUser:User|undefined;
-    public items = new Set<Item>();
+    public static get myUser(): User | undefined {
+        return Shop._myUser;
+    }
+    public static set myUser(value: User | undefined) {
+        Shop._myUser = value;
+    }
+    private static _myUser: User | undefined;
+    private _items = new Set<Item>();
+    public get items() {
+        return this._items;
+    }
+    public set items(value) {
+        this._items = value;
+    }
     constructor(user:User|undefined) {
         Shop.myUser = user;
     }
@@ -169,7 +202,7 @@ class Shop {
         }
     }
 
-    public shopItemCard(item:Item):HTMLDivElement {
+    private shopItemCard(item:Item):HTMLDivElement {
         let mainDiv: HTMLDivElement = document.createElement('div');
         mainDiv.classList.add('shop-item');
         mainDiv.style.border = 'dashed black 1px'
@@ -253,7 +286,7 @@ loginButton.addEventListener('click', () => {
         (<HTMLInputElement>document.getElementById('name-input')).value = '';
         (<HTMLInputElement>document.getElementById('age-input')).value = '';
         (<HTMLInputElement>document.getElementById('name-input')).placeholder = 'ERROR: Input valid Name';
-        (<HTMLInputElement>document.getElementById('age-input')).placeholder = 'ERROR: Input valid Age';
+        (<HTMLInputElement>document.getElementById('age-input')).placeholder = 'ERROR: Input valid Password';
     } else {
         for (let div of mainDivs) {
             div.style.display = 'none';
@@ -267,6 +300,8 @@ loginButton.addEventListener('click', () => {
         Shop.myUser?.createCart();
         (<HTMLInputElement>document.getElementById('name-input')).value = '';
         (<HTMLInputElement>document.getElementById('age-input')).value = '';
+        (<HTMLInputElement>document.getElementById('name-input')).placeholder = 'Name';
+        (<HTMLInputElement>document.getElementById('age-input')).placeholder = 'Password';
     }
 })
 
